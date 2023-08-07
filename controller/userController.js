@@ -2,9 +2,7 @@ import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 
-//@desc Auth user/set Token
-//route POST /api/users/auth
-//@access public
+
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -22,9 +20,7 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-//@desc Register a new User
-//route POST /api/users
-//@access public
+
 const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -53,9 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-//@desc Logout User
-//route POST /api/users/logout
-//@access public
+
 const logoutUser = asyncHandler(async (req, res) => {
   res.cookie("jwt", "", {
     httpOnly: true,
@@ -64,9 +58,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Logout out" });
 });
 
-//@desc Get user Profile
-//route GET /api/users/profile
-//@access private
+
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = {
     _id: req.user._id,
@@ -75,9 +67,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
   };
   res.status(200).json(user);
 });
-//@desc Update user Profile
-//route PUT /api/users/profile
-//@access private
+
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 

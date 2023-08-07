@@ -4,9 +4,10 @@ import { GoHeart } from "react-icons/go";
 import { MdCreate } from "react-icons/md";
 import { GrUserAdmin, GrUserExpert } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
-  const user = true;
+  const { userInfo } = useSelector((state) => state.auth);
   return (
     <div className="fixed bottom-0 z-20 bg-white w-full">
       <div className="flex justify-around items-center h-8">
@@ -24,12 +25,14 @@ const Footer = () => {
           </Link>
         </div>
         <div>
-          {user ? (
+          {userInfo ? (
             <Link to="/profile">
               <GrUserExpert className="text-xl cursor-pointer" />
             </Link>
           ) : (
+            <Link to="/login">
             <GrUserAdmin className="text-xl cursor-pointer" />
+            </Link>
           )}
         </div>
       </div>
